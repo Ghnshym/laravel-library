@@ -10,8 +10,7 @@ class BookController extends Controller
     public function index()
     {
         if (auth()->check() && auth()->user()->usertype == 'admin') {
-
-            $books = Book::all();
+            $books = Book::paginate(5);
             return view('admin.books.index', ['books' => $books]);
         } else {
             return redirect()->route('login');

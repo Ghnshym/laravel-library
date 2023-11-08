@@ -50,6 +50,26 @@
                 @endforeach
             </tbody>
         </table>
+        
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item {{ ($books->currentPage() == 1) ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $books->previousPageUrl() }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for ($i = 1; $i <= $books->lastPage(); $i++)
+                    <li class="page-item {{ ($books->currentPage() == $i) ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $books->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+                <li class="page-item {{ ($books->currentPage() == $books->lastPage()) ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $books->nextPageUrl() }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <!-- Add Bootstrap JS and jQuery CDN just before the closing </body> tag -->
