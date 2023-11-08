@@ -47,3 +47,5 @@ Route::DELETE('book/delete/{id}', [BookController::class, 'delete'])->name('book
 Route::get('user/book/{id}', [HomeController::class, 'bookDetails'])->name('user.book.details');
 route::get('user/book/orderpage/{id}', [LendingController::class, 'lendingform'])->name('user.book.orderpage');
 Route::post('user/book/order/{id}', [LendingController::class, 'lendingbook'])->name('user.book.order');
+Route::get('user/notification', [HomeController::class, 'notification'])->name('user.notification');
+Route::get('user/history', [HomeController::class, 'history'])->name('user.history');
