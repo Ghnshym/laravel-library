@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Bootstrap Navbar -->
-    @include('admin.books.nav');
+    @include('admin.nav');
 
     <div class="container">
       welcome to update page

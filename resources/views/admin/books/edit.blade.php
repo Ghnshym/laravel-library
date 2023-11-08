@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Bootstrap Navbar -->
-    @include('admin.books.nav')
+    @include('admin.nav')
 
     <div class="container mt-5">
         <div class="row">

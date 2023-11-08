@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LendingController;
+use App\Http\Controllers\AdminNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::post('book/store', [BookController::class, 'store'])->name('book.store');
 Route::get('book/edit/{id}', [BookController::class, 'updateform'])->name('book.edit');
 Route::put('book/update/{id}', [BookController::class, 'update'])->name('book.update');
 Route::DELETE('book/delete/{id}', [BookController::class, 'delete'])->name('book.delete');
+Route::get('admin/notification', [AdminNotificationController::class, 'notification'])->name('admin.notification');
+Route::get('admin/history', [AdminNotificationController::class, 'history'])->name('admin.history');
+
 
 
 

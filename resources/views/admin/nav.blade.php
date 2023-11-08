@@ -11,6 +11,12 @@
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.history') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.notification') }}">All Notification</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('book.storeform') }}">Add Book</a>
                 </li>
                 <li class="nav-item">
