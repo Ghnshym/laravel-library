@@ -12,8 +12,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('calculate:fines')->everyFifteenSeconds();
-        $schedule->command('send:notifications')->everyFifteenSeconds();
+        // $schedule->command('calculate:fines')->everyFifteenSeconds();
+        // $schedule->command('send:notifications')->everyFifteenSeconds();
+        $schedule->command('notify:manager-out-of-stock')->everyFifteenSeconds();
     }
 
     /**

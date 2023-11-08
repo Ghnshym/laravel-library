@@ -23,6 +23,17 @@ class LendingController extends Controller
         $request->validate($rules);
         $user = Auth::user();
     
+        // Find the book by its ID
+        $book = Book::findOrFail($id);
+    
+        // Check if the book is available
+        if ($book->quantity <= 0) {
+            return redirect()->back()->with('error', 'Sorry, this book is out of stock.');
+        }
+    
+        // Decrease the book's quantity by one
+        $book->decrement('quantity');
+    
         // Create a new Lending instance
         $lending = new Lending();
         $lending->user_id = $user->id;
@@ -35,8 +46,9 @@ class LendingController extends Controller
     
         $lending->save();
     
-        return redirect()->back()->with('success', "Book lending successfully");
+        return redirect()->back()->with('success', 'Book lending successfully');
     }
+    
 
     public function return(Request $request, $id)
     {

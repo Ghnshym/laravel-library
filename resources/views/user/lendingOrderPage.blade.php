@@ -59,6 +59,11 @@
             {{ session('success') }}
         </div>
         @endif
+        @if(session('error'))
+        <div class="alert alert-danger mt-3">
+            {{ session('error') }}
+        </div>
+        @endif
     </div>
 
     <!-- Add Bootstrap JS and jQuery CDN just before the closing </body> tag -->
