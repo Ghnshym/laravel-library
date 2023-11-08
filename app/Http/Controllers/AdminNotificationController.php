@@ -12,44 +12,59 @@ class AdminNotificationController extends Controller
 {
     public function notification ()
     {
-        $notifications = Notification::with('user', 'book')
-                         ->paginate(10);
-
-        return view('admin.notification', compact('notifications'));
+        if (auth()->check() && auth()->user()->usertype == 'admin') {
+        
+            $notifications = Notification::with('user', 'book')
+                            ->paginate(10);
+            return view('admin.notification', compact('notifications'));
+        } else {
+            return redirect()->route('login');
+        }
     }
 
-    public function history () {
+    public function history () 
+    {
+        if (auth()->check() && auth()->user()->usertype == 'admin') {
 
-        $lendings = Lending::with('user', 'book')
-        ->paginate(10);
+            $lendings = Lending::with('user', 'book')
+            ->paginate(10);
 
-        return view('admin.history', compact('lendings'));
+            return view('admin.history', compact('lendings'));
+        } else {
+             return  redirect()->route('login');
+        }
     }
 
     public function returnRequest()
     {
-        $lendings = Lending::with('user', 'book')
-            ->where('return_status', 'return requested')
-            ->paginate(10);
-    
-        return view('admin.return-request', compact('lendings'));
+        if (auth()->check() && auth()->user()->usertype == 'admin') {
+
+            $lendings = Lending::with('user', 'book')
+                ->where('return_status', 'return requested')
+                ->paginate(10);
+        
+            return view('admin.return-request', compact('lendings'));
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function acceptReturn (Request $request, $id)
     {
-        // dd($id);
-        $lending = Lending::where('id', $id)->first();
-    
-        if ($lending) {
-            // Update the return_status column to 'return requested'
-            $lending->return_status = 'Returned';
-            $lending->save();
-    
-            // Redirect or return a response as needed
-            return redirect()->back()->with('success', 'Return accept submitted successfully.');
+        if (auth()->check() && auth()->user()->usertype == 'admin') {
+
+            $lending = Lending::where('id', $id)->first();
+        
+            if ($lending) {
+                $lending->return_status = 'Returned';
+                $lending->save();
+        
+                return redirect()->back()->with('success', 'Return accept submitted successfully.');
+            } else {
+                return redirect()->back()->with('error', 'Record not found');
+            }
         } else {
-            // Handle the case where the record is not found
-            return redirect()->back()->with('error', 'Record not found');
+           return redirect()->route('login'); 
         }
     }
 }

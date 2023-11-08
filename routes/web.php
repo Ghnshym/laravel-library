@@ -46,6 +46,8 @@ Route::get('admin/notification', [AdminNotificationController::class, 'notificat
 Route::get('admin/history', [AdminNotificationController::class, 'history'])->name('admin.history');
 Route::get('admin/returnRequest', [AdminNotificationController::class, 'returnRequest'])->name('admin.returnRequest');
 Route::post('admin/acceptReturn/{id}', [AdminNotificationController::class, 'acceptReturn'])->name('admin.acceptReturn');
+Route::get('admin/search', [HomeController::class, 'AdminSearch'])->name('admin.search');
+
 
 
 

@@ -16,58 +16,97 @@ class HomeController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $usertype = $user->usertype;
-    
+
             if ($usertype == 'user') {
                 $books = Book::all();
                 return view('user.dashboard', ['books' => $books]);
-            }
-            elseif ($usertype == 'admin') {
-                return view('admin.adminhome');
+            } elseif ($usertype == 'admin') {
+                $books = Book::all();
+                return view('admin.adminhome', ['books' => $books]);
             }
         }
         return redirect()->route('login');
     }
 
-    public function bookDetails($id) {
-        $book = Book::find($id);
-        return view('user.bookdetails', ['book' => $book]);
+    public function bookDetails($id)
+    {
+        if (auth()->check() && auth()->user()->usertype == 'user') {
+
+            $book = Book::find($id);
+            return view('user.bookdetails', ['book' => $book]);
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function notification()
     {
-        // Get the authenticated user's notifications with related user and book data
-        $user = auth()->user();
-        $notifications = Notification::with('user', 'book')
-            ->where('user_id', $user->id)
-            ->paginate(10);
-    
-        return view('user.notification', compact('notifications'));
+        if (auth()->check() && auth()->user()->usertype == 'user') {
+
+            $user = auth()->user();
+            $notifications = Notification::with('user', 'book')
+                ->where('user_id', $user->id)
+                ->paginate(10);
+
+            return view('user.notification', compact('notifications'));
+        } else {
+            return redirect()->route('login');
+        }
     }
-    
+
 
     public function history()
     {
-        // Get the authenticated user's lending history with related user and book data
-        $user = auth()->user();
-        $lendings = Lending::with('user', 'book')
-            ->where('user_id', $user->id)
-            ->paginate(10);
-    
-        return view('user.history', compact('lendings'));
+        if (auth()->check() && auth()->user()->usertype == 'user') {
+
+            $user = auth()->user();
+            $lendings = Lending::with('user', 'book')
+                ->where('user_id', $user->id)
+                ->paginate(10);
+
+            return view('user.history', compact('lendings'));
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
-    
-        if (!empty($query)) {
-            $books = Book::where('title', 'like', '%' . $query . '%')
-                ->orWhere('author', 'like', '%' . $query . '%')
-                ->get();
+        if (auth()->check() && auth()->user()->usertype == 'user') {
+
+            $query = $request->input('query');
+
+            if (!empty($query)) {
+                $books = Book::where('title', 'like', '%' . $query . '%')
+                    ->orWhere('author', 'like', '%' . $query . '%')
+                    ->get();
+            } else {
+                $books = Book::all();
+            }
+
+            return view('user.dashboard', compact('books'));
         } else {
-            $books = Book::all();
+            return redirect()->route('login');
         }
-    
-        return view('user.dashboard', compact('books'));
+    }
+
+    public function AdminSearch (Request $request)
+    {
+        if (auth()->check() && auth()->user()->usertype == 'admin') {
+
+            $query = $request->input('query');
+
+            if (!empty($query)) {
+                $books = Book::where('title', 'like', '%' . $query . '%')
+                    ->orWhere('author', 'like', '%' . $query . '%')
+                    ->get();
+            } else {
+                $books = Book::all();
+            }
+
+            return view('admin.adminhome', compact('books'));
+        } else {
+            return redirect()->route('login');
+        }
     }
 }

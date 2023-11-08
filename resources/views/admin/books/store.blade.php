@@ -27,7 +27,7 @@
     
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" >
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -35,7 +35,7 @@
     
                             <div class="form-group">
                                 <label for="author">Author</label>
-                                <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author') }}" required>
+                                <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author') }}" >
                                 @error('author')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -43,7 +43,7 @@
     
                             <div class="form-group">
                                 <label for="isbn">ISBN</label>
-                                <input type="text" class="form-control @error('isbn') is-invalid @enderror" id="isbn" name="isbn" value="{{ old('isbn') }}" required>
+                                <input type="text" class="form-control @error('isbn') is-invalid @enderror" id="isbn" name="isbn" value="{{ old('isbn') }}" >
                                 @error('isbn')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -51,7 +51,7 @@
     
                             <div class="form-group">
                                 <label for="quantity">Quantity</label>
-                                <input type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity" name="quantity" value="{{ old('quantity') }}" required>
+                                <input type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity" name="quantity" value="{{ old('quantity') }}" >
                                 @error('quantity')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror

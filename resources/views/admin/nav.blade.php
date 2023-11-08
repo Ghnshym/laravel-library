@@ -7,28 +7,28 @@
         <ul class="navbar-nav ml-auto">
             
             @auth
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('admin.history') }}">History</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('admin.notification') }}">All Notification</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('admin.returnRequest') }}">Return Request</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('book.storeform') }}">Add Book</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('book.index') }}">All Book</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        <button type="submit" class="btn btn-link nav-link active">Logout</button>
                     </form>
                 </li>
             @else
