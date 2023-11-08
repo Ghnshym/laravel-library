@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    @include('user.nav')
+    @include('admin.nav')
 
     <div class="container mt-5">
         <center>
-            <h1>Your Order History</h1>
+            <h1>Return Request</h1>
         </center>
         <table class="table table-bordered mt-3">
             <thead>
@@ -25,7 +25,7 @@
                     <th>Returned At</th>
                     <th>Return Status</th>
                     <th>Order Date</th>
-                    <th>Return</th>
+                    <th>Accept</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,15 +41,14 @@
                         <td>{{ $lending->return_status }}</td>
                         <td>{{ $lending->created_at }}</td>
                         <td>
-                            @if ($lending->return_status === 'pending')
-                            <form action="{{ route('user.return', ['id' => $lending->id]) }}" method="POST">
+                            @if ($lending->return_status === 'return requested')
+                            <form action="{{ route('admin.acceptReturn', ['id' => $lending->id]) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to return this book now?')">Return</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to return Accept this book?')">Return</button>
                             </form>
                             @else
                             {{ $lending->return_status}}
                             @endif
-
                         </td>
                     </tr>
                 @endforeach

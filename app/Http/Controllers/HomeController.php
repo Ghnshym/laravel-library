@@ -19,8 +19,9 @@ class HomeController extends Controller
     
             if ($usertype == 'user') {
                 $books = Book::all();
-                return view('user.dashboard', ['books' => $books]);;
-            } elseif ($usertype == 'admin') {
+                return view('user.dashboard', ['books' => $books]);
+            }
+            elseif ($usertype == 'admin') {
                 return view('admin.adminhome');
             }
         }
@@ -53,5 +54,20 @@ class HomeController extends Controller
             ->paginate(10);
     
         return view('user.history', compact('lendings'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        if (!empty($query)) {
+            $books = Book::where('title', 'like', '%' . $query . '%')
+                ->orWhere('author', 'like', '%' . $query . '%')
+                ->get();
+        } else {
+            $books = Book::all();
+        }
+    
+        return view('user.dashboard', compact('books'));
     }
 }

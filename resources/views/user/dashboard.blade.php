@@ -10,13 +10,32 @@
 <body>
     @include('user.nav');
 
+    <div class="container mt-3">
+    <div class="d-flex justify-content-center">
+        <form action="{{ route('user.search') }}" method="GET">
+            @csrf
+            <div class="form-row">
+                <div class="col-md-8">
+                    <input type="text" name="query" class="form-control" placeholder="Search Title or Author" value="{{ old('query') }}">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+
     <div class="container">
         <h2>All Book List</h2>
         <div class="row">
+            @if (count($books) === 0)
+            <p>No books matching your search criteria were found.</p>
+            @endif
             @foreach($books as $book)
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="https://source.unsplash.com/300x200/?code,technology" class="card-img-top" alt="Random Image" style="height:100px;">
+                    <img src="https://source.unsplash.com/300x200/?book,{{ $book->title}}" class="card-img-top" alt="Random Image" style="height:100px;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $book->title }}</h5>
                         <p class="card-text">Author: {{ $book->author }}</p>

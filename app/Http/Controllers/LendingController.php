@@ -37,4 +37,25 @@ class LendingController extends Controller
     
         return redirect()->back()->with('success', "Book lending successfully");
     }
+
+    public function return(Request $request, $id)
+    {
+        // Get the authenticated user
+        $user = auth()->user();
+    
+        // Find the Lending record that matches the user_id and the provided $id
+        $lending = Lending::where('user_id', $user->id)->where('id', $id)->first();
+    
+        if ($lending) {
+            // Update the return_status column to 'return requested'
+            $lending->return_status = 'return requested';
+            $lending->save();
+    
+            // Redirect or return a response as needed
+            return redirect()->back()->with('success', 'Return request submitted successfully.');
+        } else {
+            // Handle the case where the record is not found
+            return redirect()->back()->with('error', 'Record not found or you are not authorized.');
+        }
+    }
 }

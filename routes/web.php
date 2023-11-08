@@ -44,6 +44,8 @@ Route::put('book/update/{id}', [BookController::class, 'update'])->name('book.up
 Route::DELETE('book/delete/{id}', [BookController::class, 'delete'])->name('book.delete');
 Route::get('admin/notification', [AdminNotificationController::class, 'notification'])->name('admin.notification');
 Route::get('admin/history', [AdminNotificationController::class, 'history'])->name('admin.history');
+Route::get('admin/returnRequest', [AdminNotificationController::class, 'returnRequest'])->name('admin.returnRequest');
+Route::post('admin/acceptReturn/{id}', [AdminNotificationController::class, 'acceptReturn'])->name('admin.acceptReturn');
 
 
 
@@ -53,3 +55,5 @@ route::get('user/book/orderpage/{id}', [LendingController::class, 'lendingform']
 Route::post('user/book/order/{id}', [LendingController::class, 'lendingbook'])->name('user.book.order');
 Route::get('user/notification', [HomeController::class, 'notification'])->name('user.notification');
 Route::get('user/history', [HomeController::class, 'history'])->name('user.history');
+Route::post('user/return/{id}', [LendingController::class, 'return'])->name('user.return');
+Route::get('user/search', [HomeController::class, 'search'])->name('user.search');

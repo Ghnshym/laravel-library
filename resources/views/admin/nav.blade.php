@@ -17,6 +17,9 @@
                     <a class="nav-link" href="{{ route('admin.notification') }}">All Notification</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.returnRequest') }}">Return Request</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('book.storeform') }}">Add Book</a>
                 </li>
                 <li class="nav-item">
