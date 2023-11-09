@@ -67,6 +67,6 @@ Route::name('razorpay.')
     ->controller(RazorpayController::class)
     ->prefix('razorpay')
     ->group(function () {
-        Route::view('payment/{id}/{price}/{user_name}', 'razorpay.index')->name('create.payment');
+        Route::view('payment/{id}/{price}', 'razorpay.index')->name('create.payment');
         Route::post('handle-payment', 'handlePayment')->name('make.payment');
     });

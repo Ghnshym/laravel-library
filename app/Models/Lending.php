@@ -9,8 +9,11 @@ class Lending extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'late_fine',
         'return_status',
+        'payment_status',
+        'payment_type'
         // Other fields that are allowed to be mass assigned
     ];
 

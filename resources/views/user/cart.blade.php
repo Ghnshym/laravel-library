@@ -13,6 +13,12 @@
     <div class="container mt-5">
         <center>
             <h1>Your Cart</h1>
+            @if(session('error'))
+                <div class="alert alert-success">{{ session('error') }}</div>
+            @endif
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
         </center>
         <table class="table table-bordered mt-3">
             <thead>
@@ -43,9 +49,8 @@
                                 @csrf
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to cash on delivery?')">With Cash</button>
                             </form>
-                            <form action="{{ route('razorpay.create.payment', ['id' => $lending->id, 'price' => $lending->book->price, 'user_name' => $lending->user->name]) }}" method="GET" class="mt-1">
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to cash on delivery?')">WithOnline</button>
-                            </form>
+                            <a href="{{ route('razorpay.create.payment', ['id' => $lending->id, 'price' => $lending->book->price]) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to make payment?')">With Online</a>
+
                             
 
                         </td>
@@ -77,5 +82,6 @@
     <!-- Add Bootstrap JS and jQuery CDN just before the closing </body> tag -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>

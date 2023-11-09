@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Exception;
 use Razorpay\Api\Api;
 use Illuminate\Http\Request;
+use App\Models\Lending;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Log;
 
 class RazorpayController extends Controller
@@ -19,20 +21,27 @@ class RazorpayController extends Controller
                 $response = $api->payment->fetch($input['razorpay_payment_id'])->capture([
                     'amount' => $payment['amount']
                 ]);
+                // dd($response);
 
-                // // Store payment data in the Payment table
-                // $paymentData = [
-                //     'user_name' => request('user_name'),
-                //     'lending_id' => request('id'),
-                //     'price' => request('price'),
-                //     'r_payment_id' => $response['id'],
-                //     'method' => $response['method'],
-                //     'currency' => $response['currency'],
-                //     'user_email' => $response['email'],
-                //     'amount' => $response['amount'] / 100,
-                //     'json_response' => json_encode((array)$response)
-                // ];
+                $id = $request->input('id');
 
+                Lending::where('id', $id)->update([
+                    'payment_status' => 'paid',
+                    'payment_type' => 'online',
+                ]);
+
+                Payment::create([
+                    'status' => $response['status'],
+                    'payment_id' => $response['id'],
+                    'entity' => $response['entity'],
+                    'amount' => $response['amount'] / 100, // Assuming amount is in paisa
+                    'currency' => $response['currency'],
+                    'lending_id' => $id
+                ]);
+                
+                return redirect()->route('user.cart')->with('success', 'Payment status and type updated successfully.');
+
+                
                 // $payment = Payment::create([
                 //     'r_payment_id' => $response['id'],
                 //     'method' => $response['method'],
