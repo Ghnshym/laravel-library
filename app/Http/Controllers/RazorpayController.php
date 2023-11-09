@@ -38,18 +38,9 @@ class RazorpayController extends Controller
                     'currency' => $response['currency'],
                     'lending_id' => $id
                 ]);
-                
+
                 return redirect()->route('user.cart')->with('success', 'Payment status and type updated successfully.');
 
-                
-                // $payment = Payment::create([
-                //     'r_payment_id' => $response['id'],
-                //     'method' => $response['method'],
-                //     'currency' => $response['currency'],
-                //     'user_email' => $response['email'],
-                //     'amount' => $response['amount'] / 100,
-                //     'json_response' => json_encode((array)$response)
-                // ]);
             } catch (Exception $e) {
                 Log::info($e->getMessage());
                 return back()->withError($e->getMessage());

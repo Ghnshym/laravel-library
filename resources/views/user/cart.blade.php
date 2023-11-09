@@ -47,9 +47,9 @@
                         <td>
                             <form action="{{ route('user.cashpayment', ['id' => $lending->id]) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to cash on delivery?')">With Cash</button>
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to cash on delivery?')">With Cash</button>
                             </form>
-                            <a href="{{ route('razorpay.create.payment', ['id' => $lending->id, 'price' => $lending->book->price]) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to make payment?')">With Online</a>
+                            <a href="{{ route('razorpay.create.payment', ['id' => $lending->id, 'price' => $lending->book->price]) }}" class="btn btn-sm btn-danger mt-2" onclick="return confirm('Are you sure you want to make payment?')">With Online</a>
 
                             
 
