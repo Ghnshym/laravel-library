@@ -22,6 +22,8 @@
                     <th>Book Title</th>
                     <th>Late Fine</th>
                     <th>Due date</th>
+                    <th>Payment status</th>
+                    <th>Payment type</th>
                     <th>Returned At</th>
                     <th>Return Status</th>
                     <th>Order Date</th>
@@ -37,6 +39,8 @@
                         <td>{{ $lending->book->title }}</td>
                         <td>{{ $lending->late_fine }}</td>
                         <td>{{ $lending->due_date }}</td>
+                        <td>{{ $lending->payment_status }}</td>
+                        <td>{{ $lending->payment_type }}</td>
                         <td>{{ $lending->returned_at }}</td>
                         <td>{{ $lending->return_status }}</td>
                         <td>{{ $lending->created_at }}</td>

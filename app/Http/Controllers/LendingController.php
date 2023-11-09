@@ -45,7 +45,9 @@ class LendingController extends Controller
             $lending->book_id = $id;
             $lending->due_date = $request->input('due_date');
             $lending->returned_at = $request->input('returned_at');
-
+            
+            $lending->payment_status = 'unpaid';
+            $lending->payment_type = 'cash';
             $lending->return_status = 'pending';
             $lending->late_fine = 0;
 

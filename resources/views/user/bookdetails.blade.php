@@ -19,6 +19,7 @@
                     <th>Author</th>
                     <th>ISBN</th>
                     <th>Quantity</th>
+                    <th>Price</th>
                     <th>Description</th>
                     <th>Borrow Book</th>
                 </tr>
@@ -29,6 +30,7 @@
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->isbn }}</td>
                     <td>{{ $book->quantity }}</td>
+                    <td>{{ $book->price }}</td>
                     <td>{{ $book->description }}</td>
                     <td>
                         <a class="btn btn-primary" href="{{ route('user.book.orderpage', [$book->id])}}">Order</a>

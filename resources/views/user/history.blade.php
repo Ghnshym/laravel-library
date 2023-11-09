@@ -24,6 +24,8 @@
                     <th>Due date</th>
                     <th>Returned At</th>
                     <th>Return Status</th>
+                    <th>Payment Status</th>
+                    <th>Payment Type</th>
                     <th>Order Date</th>
                     <th>Return</th>
                 </tr>
@@ -39,6 +41,8 @@
                         <td>{{ $lending->due_date }}</td>
                         <td>{{ $lending->returned_at }}</td>
                         <td>{{ $lending->return_status }}</td>
+                        <td>{{ $lending->payment_status }}</td>
+                        <td>{{ $lending->payment_type }}</td>
                         <td>{{ $lending->created_at }}</td>
                         <td>
                             @if ($lending->return_status === 'pending')

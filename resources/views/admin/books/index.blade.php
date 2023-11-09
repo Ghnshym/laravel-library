@@ -20,6 +20,7 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>ISBN</th>
+                    <th>Price</th>
                     <th>Quantity</th>
                     <th>Description</th>
                     <th>Update</th>
@@ -34,6 +35,7 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->isbn }}</td>
+                    <td>{{ $book->price }}</td>
                     <td>{{ $book->quantity }}</td>
                     <td>{{ $book->description }}</td>
                     <td>

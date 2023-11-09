@@ -34,6 +34,7 @@ class BookController extends Controller
                 'title' => 'required',
                 'author' => 'required',
                 'isbn' => 'required|numeric|unique:books',
+                'price' => 'required',
                 'quantity' => 'required|integer',
                 'description' => 'nullable',
             ]);
@@ -69,6 +70,7 @@ class BookController extends Controller
                 'title' => 'required',
                 'author' => 'required',
                 'isbn' => 'required|unique:books,isbn,' . $id,
+                'price' => 'required',
                 'quantity' => 'required|integer',
                 'description' => 'nullable',
             ]);

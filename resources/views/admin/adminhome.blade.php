@@ -40,7 +40,7 @@
                       <div class="card-body">
                           <h5 class="card-title">{{ $book->title }}</h5>
                           <p class="card-text">Author: {{ $book->author }}</p>
-                          <p class="card-text">ISBN: {{ $book->isbn }}</p>
+                          <p class="card-text">Price: {{ $book->price }}</p>
                       </div>
                   </div>
               </div>
