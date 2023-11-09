@@ -11,8 +11,8 @@
     
         @foreach($outOfStockBooks as $book)
         <ul>
-            <li>{{ $book->title }}</li>
-            <li>  {{ $book->author }}</li>
+            <li>Book Title: {{ $book->title }}</li>
+            <li>Book Author:  {{ $book->author }}</li>
             <li> (ISBN: {{ $book->isbn }})</li>
         </ul>
         @endforeach
