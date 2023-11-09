@@ -70,6 +70,44 @@ class HomeController extends Controller
         }
     }
 
+    public function cart()
+    {
+        if (auth()->check() && auth()->user()->usertype == 'user') {
+            $user = auth()->user();
+            $lendings = Lending::with('user', 'book')
+                ->where('user_id', $user->id)
+                ->where('payment_status', 'unpaid')
+                ->where('payment_type', 'pending')
+                ->paginate(10);
+
+            return view('user.cart', compact('lendings'));
+        } else {
+            return redirect()->route('login');
+    }
+    }
+
+    public function cash (Request $request, $id) 
+    {
+        if (auth()->check() && auth()->user()->usertype == 'user') {
+            
+            $user = auth()->user();
+            $lending = Lending::find($id);
+        
+            if (!$lending) {
+                return redirect()->route('user.cart')->with('error', 'Lending record not found.');
+            }
+            $lending->payment_status = 'unpaid';
+            $lending->payment_type = 'cash';
+        
+            // Save the changes
+            $lending->save();
+        
+            return redirect()->route('user.cart')->with('success', 'Payment status and type updated successfully.');
+        }else {
+            return redirect()->route('login');
+        }
+    }
+
     public function search(Request $request)
     {
         if (auth()->check() && auth()->user()->usertype == 'user') {

@@ -13,6 +13,9 @@
                     <a class="nav-link" href="{{ route('user.history') }}">History</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.cart') }}">Cart</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.notification') }}">Notification</a>
                 </li>
                 <li class="nav-item">

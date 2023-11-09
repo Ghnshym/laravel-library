@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LendingController;
 use App\Http\Controllers\AdminNotificationController;
+use App\Http\Controllers\RazorpayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,15 @@ route::get('user/book/orderpage/{id}', [LendingController::class, 'lendingform']
 Route::post('user/book/order/{id}', [LendingController::class, 'lendingbook'])->name('user.book.order');
 Route::get('user/notification', [HomeController::class, 'notification'])->name('user.notification');
 Route::get('user/history', [HomeController::class, 'history'])->name('user.history');
+Route::get('user/cart', [HomeController::class, 'cart'])->name('user.cart');
 Route::post('user/return/{id}', [LendingController::class, 'return'])->name('user.return');
 Route::get('user/search', [HomeController::class, 'search'])->name('user.search');
+Route::post('user/cashpayment/{id}', [HomeController::class, 'cash'])->name('user.cashpayment');
+
+Route::name('razorpay.')
+    ->controller(RazorpayController::class)
+    ->prefix('razorpay')
+    ->group(function () {
+        Route::view('payment/{id}/{price}/{user_name}', 'razorpay.index')->name('create.payment');
+        Route::post('handle-payment', 'handlePayment')->name('make.payment');
+    });

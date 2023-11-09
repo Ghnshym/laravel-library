@@ -47,13 +47,13 @@ class LendingController extends Controller
             $lending->returned_at = $request->input('returned_at');
             
             $lending->payment_status = 'unpaid';
-            $lending->payment_type = 'cash';
+            $lending->payment_type = 'pending';
             $lending->return_status = 'pending';
             $lending->late_fine = 0;
 
             $lending->save();
 
-            return redirect()->back()->with('success', 'Book lending successfully');
+            return redirect()->back()->with('success', 'Book added to cart successfully');
         } else {
             return redirect()->route('login');
         }

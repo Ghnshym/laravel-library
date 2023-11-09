@@ -54,7 +54,7 @@
                 @enderror
             </div>
         
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Add To cart</button>
         </form>
         @if(session('success'))
         <div class="alert alert-success mt-3">
